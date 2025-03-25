@@ -43,7 +43,7 @@ use Drupal\user\EntityOwnerTrait;
  *   admin_permission = "administer link_tracker_tracked_link",
  *   entity_keys = {
  *     "id" = "id",
- *     "label" = "label",
+ *     "label" = "url",
  *     "uuid" = "uuid",
  *     "owner" = "uid",
  *   },
@@ -81,21 +81,14 @@ final class TrackedLink extends ContentEntityBase implements TrackedLinkInterfac
 
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['label'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Label'))
-      ->setRequired(TRUE)
-      ->setSetting('max_length', 255)
+    $fields['url'] = BaseFieldDefinition::create('uri')
+      ->setLabel(t('Tracked URL'))
+      ->setDescription(t('The URL to track.'))
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -5,
+        'type' => 'uri',
+        'weight' => 0,
       ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => -5,
-      ])
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Status'))
@@ -116,20 +109,6 @@ final class TrackedLink extends ContentEntityBase implements TrackedLinkInterfac
         'settings' => [
           'format' => 'enabled-disabled',
         ],
-      ])
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['description'] = BaseFieldDefinition::create('text_long')
-      ->setLabel(t('Description'))
-      ->setDisplayOptions('form', [
-        'type' => 'text_textarea',
-        'weight' => 10,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('view', [
-        'type' => 'text_default',
-        'label' => 'above',
-        'weight' => 10,
       ])
       ->setDisplayConfigurable('view', TRUE);
 

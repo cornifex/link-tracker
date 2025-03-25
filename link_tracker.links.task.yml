@@ -20,9 +20,3 @@ entity.link_tracker_tracked_link.collection:
   route_name: entity.link_tracker_tracked_link.collection
   base_route: system.admin_content
   weight: 10
-
-entity.link_tracker_visit.collection:
-  title: 'Visits'
-  route_name: entity.link_tracker_visit.collection
-  base_route: system.admin_content
-  weight: 10

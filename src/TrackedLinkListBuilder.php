@@ -6,6 +6,8 @@ namespace Drupal\link_tracker;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 /**
  * Provides a list controller for the tracked link entity type.
@@ -16,8 +18,8 @@ final class TrackedLinkListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader(): array {
-    $header['id'] = $this->t('ID');
-    $header['label'] = $this->t('Label');
+    $header['url'] = $this->t('Tracked URL');
+    $header['canonical'] = $this->t('On-Site URL');
     $header['status'] = $this->t('Status');
     $header['uid'] = $this->t('Author');
     $header['created'] = $this->t('Created');
@@ -30,8 +32,8 @@ final class TrackedLinkListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity): array {
     /** @var \Drupal\link_tracker\TrackedLinkInterface $entity */
-    $row['id'] = $entity->id();
-    $row['label'] = $entity->toLink();
+    $row['url'] = $entity->get('url')->value;
+    $row['canonical'] = Url::fromRoute('entity.link_tracker_tracked_link.canonical', ['link_tracker_tracked_link' => $entity->id()], ['absolute' => TRUE])->toString();
     $row['status'] = $entity->get('status')->value ? $this->t('Enabled') : $this->t('Disabled');
     $username_options = [
       'label' => 'hidden',
