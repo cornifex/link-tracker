@@ -9,3 +9,7 @@ delete link_tracker_tracked_link:
   title: 'Delete tracked link'
 create link_tracker_tracked_link:
   title: 'Create tracked link'
+
+administer link_tracker_visit:
+  title: 'Administer visits'
+  restrict access: true

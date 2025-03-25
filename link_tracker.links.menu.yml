@@ -9,3 +9,9 @@ entity.link_tracker_tracked_link.collection:
   description: 'List of tracked links.'
   route_name: entity.link_tracker_tracked_link.collection
   parent: system.admin_content
+
+entity.link_tracker_visit.collection:
+  title: 'Visits'
+  description: 'List of visits.'
+  route_name: entity.link_tracker_visit.collection
+  parent: system.admin_content

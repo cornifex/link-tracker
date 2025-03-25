@@ -3,3 +3,9 @@ link_tracker_tracked_link.add_form:
   route_name: entity.link_tracker_tracked_link.add_form
   appears_on:
     - entity.link_tracker_tracked_link.collection
+
+link_tracker_visit.add_form:
+  title: 'Add visit'
+  route_name: entity.link_tracker_visit.add_form
+  appears_on:
+    - entity.link_tracker_visit.collection
