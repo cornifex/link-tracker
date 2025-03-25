@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - link_tracker
+id: link_tracker_tracked_link_save_action
+label: 'Save tracked links'
+type: link_tracker_tracked_link
+plugin: entity:save_action:link_tracker_tracked_link
+configuration: {  }

@@ -1,0 +1,22 @@
+entity.link_tracker_tracked_link.settings:
+  title: 'Settings'
+  route_name: entity.link_tracker_tracked_link.settings
+  base_route: entity.link_tracker_tracked_link.settings
+entity.link_tracker_tracked_link.view:
+  title: 'View'
+  route_name: entity.link_tracker_tracked_link.canonical
+  base_route: entity.link_tracker_tracked_link.canonical
+entity.link_tracker_tracked_link.edit_form:
+  title: 'Edit'
+  route_name: entity.link_tracker_tracked_link.edit_form
+  base_route: entity.link_tracker_tracked_link.canonical
+entity.link_tracker_tracked_link.delete_form:
+  title: 'Delete'
+  route_name: entity.link_tracker_tracked_link.delete_form
+  base_route: entity.link_tracker_tracked_link.canonical
+  weight: 10
+entity.link_tracker_tracked_link.collection:
+  title: 'Tracked Links'
+  route_name: entity.link_tracker_tracked_link.collection
+  base_route: system.admin_content
+  weight: 10

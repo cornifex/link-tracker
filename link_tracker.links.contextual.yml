@@ -1,0 +1,10 @@
+entity.link_tracker_tracked_link.edit_form:
+  route_name: entity.link_tracker_tracked_link.edit_form
+  group: link_tracker_tracked_link
+  title: 'Edit'
+
+entity.link_tracker_tracked_link.delete_form:
+  route_name: entity.link_tracker_tracked_link.delete_form
+  group: link_tracker_tracked_link
+  title: 'Delete'
+  weight: 10

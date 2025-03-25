@@ -1,0 +1,11 @@
+entity.link_tracker_tracked_link.settings:
+  title: 'Tracked Link'
+  description: 'Configure a Tracked Link entity type.'
+  route_name:  entity.link_tracker_tracked_link.settings
+  parent: system.admin_structure
+
+entity.link_tracker_tracked_link.collection:
+  title: 'Tracked Links'
+  description: 'List of tracked links.'
+  route_name: entity.link_tracker_tracked_link.collection
+  parent: system.admin_content

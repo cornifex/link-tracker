@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a tracked link entity.
+ *
+ * This template is used when viewing a canonical tracked link page,
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.label'.
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_link_tracker_tracked_link()
+ */
+#}
+<article{{ attributes }}>
+  {% if view_mode != 'full' %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+  {% endif %}
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</article>

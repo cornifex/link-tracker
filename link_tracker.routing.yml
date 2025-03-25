@@ -1,0 +1,7 @@
+entity.link_tracker_tracked_link.settings:
+  path: 'admin/structure/link-tracker-tracked-link'
+  defaults:
+    _form: '\Drupal\link_tracker\Form\TrackedLinkSettingsForm'
+    _title: 'Tracked Link'
+  requirements:
+    _permission: 'administer link_tracker_tracked_link'

@@ -1,0 +1,11 @@
+administer link_tracker_tracked_link:
+  title: 'Administer tracked links'
+  restrict access: true
+view link_tracker_tracked_link:
+  title: 'View tracked link'
+edit link_tracker_tracked_link:
+  title: 'Edit tracked link'
+delete link_tracker_tracked_link:
+  title: 'Delete tracked link'
+create link_tracker_tracked_link:
+  title: 'Create tracked link'

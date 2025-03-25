@@ -1,0 +1,5 @@
+link_tracker_tracked_link.add_form:
+  title: 'Add tracked link'
+  route_name: entity.link_tracker_tracked_link.add_form
+  appears_on:
+    - entity.link_tracker_tracked_link.collection

@@ -1,0 +1,85 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Provides a tracked link entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function link_tracker_theme(): array {
+  return [
+    'link_tracker_tracked_link' => ['render element' => 'elements'],
+  ];
+}
+
+/**
+ * Prepares variables for tracked link templates.
+ *
+ * Default template: link-tracker-tracked-link.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the tracked link information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_link_tracker_tracked_link(array &$variables): void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function link_tracker_user_cancel($edit, UserInterface $account, $method): void {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish tracked links.
+      $storage = \Drupal::entityTypeManager()->getStorage('link_tracker_tracked_link');
+      $link_tracker_tracked_link_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($link_tracker_tracked_link_ids) as $link_tracker_tracked_link) {
+        $link_tracker_tracked_link->set('status', FALSE)->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize tracked links.
+      $storage = \Drupal::entityTypeManager()->getStorage('link_tracker_tracked_link');
+      $link_tracker_tracked_link_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($link_tracker_tracked_link_ids) as $link_tracker_tracked_link) {
+        $link_tracker_tracked_link->setOwnerId(0)->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function link_tracker_user_predelete(UserInterface $account): void {
+  // Delete tracked links that belong to this account.
+  $storage = \Drupal::entityTypeManager()->getStorage('link_tracker_tracked_link');
+  $link_tracker_tracked_link_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->accessCheck(FALSE)
+    ->execute();
+  $storage->delete(
+    $storage->loadMultiple($link_tracker_tracked_link_ids)
+  );
+}
