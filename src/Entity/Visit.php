@@ -37,8 +37,10 @@ final class Visit extends ContentEntityBase implements VisitInterface {
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) : array {
     $fields = parent::baseFieldDefinitions($entity_type);
+    $fields['tracked_link'] = BaseFieldDefinition::create('entity_reference')
+      ->setSetting('target_type', 'link_tracker_tracked_link');
     $fields['ip_address'] = BaseFieldDefinition::create('string');
-    $fields['count'] = BaseFieldDefinition::create('integer');
+    $fields['timestamp'] = BaseFieldDefinition::create('created');
     return $fields;
   }
 

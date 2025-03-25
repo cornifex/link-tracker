@@ -1,0 +1,6 @@
+services:
+  link_tracker.tracked_link_subscriber:
+    class: Drupal\link_tracker\Routing\TrackedLinkSubscriber
+    arguments: ['@current_route_match']
+    tags:
+      - { name: event_subscriber }
